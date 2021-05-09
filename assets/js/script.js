@@ -4,7 +4,7 @@ var userNum;
 var userSym;
 var userUpper;
 var userLower;
-var choices;
+var userChoice;
 var generateBtn = document.querySelector("#generateBtn"); 
 
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -26,80 +26,84 @@ function getPassword() {
     user = parseInt(prompt("How long would you like your password to be? (8-128 characters)"));
     if (!user) {
       return;
+    }
+    else if (user < 8 || user > 128) {
+      alert("Please choose a length between 8 and 128 characters.");
     } 
     else {
         userNum = confirm("Will your password contain numbers?");
         userSym = confirm("Will your password contain symbols?");
-        userUpper = confirm("Will your password contain Uppercase letters?");
-        userLower = confirm("Will your password contain Lowercase letters?");
+        userUpper = confirm("Will your password contain Uppercase characters?");
+        userLower = confirm("Will your password contain Lowercase characters?");
     };
 
     if (!userNum && !userSym && !userLower && !userUpper) {  //If cancel is selected 4 times.
-      choices = alert("Your password must include at least 1 criteria.");
+      userChoice = alert("Your password must include at least 1 criteria.");
     
     } 
     else if (userNum && userSym && userLower && userUpper) { //If OK is selected 4 times.
-        choices = numbers.concat(symbols, convertUpper, alphabet);
+        userChoice = numbers.concat(symbols, convertUpper, alphabet);
     };
     // If the user chooses 1 option.
     if (userNum) {
-      choices = numbers;
+      userChoice = numbers;
     } 
     else if (userSym) {
-      choices = symbols;
+      userChoice = symbols;
     } 
     else if (userLower) {
-      choices = alphabet;
+      userChoice = alphabet;
     } 
     else if (userUpper) {
-      choices = space.concat(convertUpper)
+      userChoice = space.concat(convertUpper)
     };
       // If the user chooses 2 options.
     if (userSym && userNum) {
-      choices = symbols.concat(numbers);
+      userChoice = symbols.concat(numbers);
 
     } 
     else if (userSym && userLower) {
-      choices = symbols.concat(alphabet);
+      userChoice = symbols.concat(alphabet);
 
     } 
     else if (userSym && userUpper) {
-      choices = symbols.concat(convertUpper);
+      userChoice = symbols.concat(convertUpper);
 
     } 
     else if (userLower && userNum) {
-      choices = alphabet.concat(numbers);
+      userChoice = alphabet.concat(numbers);
 
     } 
     else if (userLower && userUpper) {
-      choices = alphabet.concat(convertUpper);
+      userChoice = alphabet.concat(convertUpper);
 
     } 
     else if (userNum && userUpper) {
-      choices = numbers.concat(convertUpper);
+      userChoice = numbers.concat(convertUpper);
     }
     // If the user chooses 3 options.
     if (userSym && userNum && userUpper) {
-      choices = symbols.concat(numbers, convertUpper);
+      userChoice = symbols.concat(numbers, convertUpper);
 
     } 
     else if (userSym && userNum && userLower) {
-      choices = symbols.concat(numbers, alphabet);
+      userChoice = symbols.concat(numbers, alphabet);
 
     } 
     else if (userSym && userLower && userUpper) {
-      choices = symbols.concat(alphabet, convertUpper);
+      userChoice = symbols.concat(alphabet, convertUpper);
 
     } 
     else if (userLower && userNum && userUpper) {
-      choices = numbers.concat(convertUpper, alphabet);
+      userChoice = numbers.concat(convertUpper, alphabet);
     };
     var password = [];
 
     for (var i = 0; i < user; i++) {
-      var pickChoices = choices[Math.floor(Math.random() * choices.length)];
-      password.push(pickChoices);
+      var pick = userChoice[Math.floor(Math.random() * userChoice.length)];
+      password.push(pick);
     }
+    console.log(pass)
     var pass = password.join("");
     UserInput(pass);
     return pass;
