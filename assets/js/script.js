@@ -55,7 +55,7 @@ function getPassword() {
       userChoice = alphabet;
     } 
     else if (userUpper) {
-      userChoice = space.concat(convertUpper)
+      userChoice = convertUpper;
     };
       // If the user chooses 2 options.
     if (userSym && userNum) {
